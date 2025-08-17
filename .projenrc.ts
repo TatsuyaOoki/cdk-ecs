@@ -4,6 +4,7 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   defaultReleaseBranch: "main",
   name: "cdk-ecs",
   projenrcTs: true,
+  buildWorkflow: false,
 
   deps: ["dotenv"] /* Runtime dependencies of this module. */,
   // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
