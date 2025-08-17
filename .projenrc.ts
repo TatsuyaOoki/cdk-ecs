@@ -7,6 +7,13 @@ const project = new awscdk.AwsCdkTypeScriptApp({
   name: "cdk-ecs",
   projenrcTs: true,
   buildWorkflow: false,
+
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      printWidth: 100,
+    },
+  },
   jestOptions: {
     updateSnapshot: UpdateSnapshot.NEVER,
   },
