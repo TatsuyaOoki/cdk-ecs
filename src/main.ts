@@ -1,23 +1,22 @@
-import { App, Stack, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import * as cdk from "aws-cdk-lib";
+import { AppStack } from "./lib/stack/app-stack";
+import { devParameter } from "./parameter";
 
-export class MyStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps = {}) {
-    super(scope, id, props);
+const app = new cdk.App();
 
-    // define resources here...
-  }
-}
+new AppStack(app, "CdkWebStandalone", {
+  env: {
+    account: devParameter.env?.account || process.env.CDK_DEFAULT_ACCOUNT,
+    region: devParameter.env?.region || process.env.CDK_DEFAULT_REGION,
+  },
+  tags: {
+    CreateBy: "CDK",
+    Repository: devParameter.repository,
+    Project: devParameter.projectName,
+    Environment: devParameter.envName,
+  },
 
-// for development, use account/region from cdk cli
-const devEnv = {
-  account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION,
-};
-
-const app = new App();
-
-new MyStack(app, 'cdk-ecs-dev', { env: devEnv });
-// new MyStack(app, 'cdk-ecs-prod', { env: prodEnv });
+  vpcCidr: devParameter.vpcCidr,
+});
 
 app.synth();
