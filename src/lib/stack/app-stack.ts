@@ -15,8 +15,8 @@ export class AppStack extends Stack {
       vpcCidr: props.vpcCidr,
     });
 
-    new Ec2App(this, "Ec2App", {
-      vpc: networking.vpc,
-    });
+    // new Ec2App(this, "Ec2App", {
+    //   vpc: networking.vpc,
+    // });
   }
 }

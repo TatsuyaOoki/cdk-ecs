@@ -4,7 +4,7 @@ import { devParameter } from "./parameter";
 
 const app = new cdk.App();
 
-new AppStack(app, "CdkWebStandalone", {
+new AppStack(app, "CdkEcs", {
   env: {
     account: devParameter.env?.account || process.env.CDK_DEFAULT_ACCOUNT,
     region: devParameter.env?.region || process.env.CDK_DEFAULT_REGION,
